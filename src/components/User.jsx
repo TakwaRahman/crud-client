@@ -1,0 +1,42 @@
+
+
+const User = () => {
+
+    const handleAddUser = (e) => {
+        e.preventDefault()
+
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+
+        console.log(name, email)
+        const newUser = { name, email }
+
+
+        fetch('http://localhost:3000/users', {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify(newUser)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+            })
+    }
+
+
+    return (
+        <div>
+            <form action="" onSubmit={handleAddUser}>
+                <input type="text" name="name" id="" />
+                <br />
+                <input type="email" name="email" id="" />
+                <br />
+                <input type="submit" value="Add User" id="" />
+            </form>
+        </div>
+    );
+};
+
+export default User;
